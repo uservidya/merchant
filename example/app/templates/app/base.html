@@ -27,37 +27,31 @@
                          <div class="nav-collapse collapse" id="main-menu">
                              <ul class="nav" id="main-menu-left">
                                  <li class="dropdown">
-                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Card <b class="caret"></b></a>
+                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Gateways <b class="caret"></b></a>
                                      <ul class="dropdown-menu" id="swatch-menu">
-                                         <li><a href="{% url 'app.views.authorize' %}">Authorize</a></li>
-                                         <li><a href="{% url 'app.views.eway' %}">Eway</a></li>
-                                         <li><a href="{% url 'app.views.paypal' %}">Paypal</a></li>
-                                         <li><a href="{% url 'app.views.braintree' %}">Braintree Payments (S2S)</a></li>
-                                         <li><a href="{% url 'app.views.stripe' %}">Stripe Payment</a></li>
-                                         <li><a href="{% url 'app.views.paylane' %}">Paylane</a></li>
-                                         <li><a href="{% url 'app.views.we_pay' %}">WePay</a></li>
-                                         <li><a href="{% url 'app.views.beanstream' %}">Beanstream</a></li>
-                                         <li><a href="{% url 'app.views.chargebee' %}">Chargebee</a></li>
+                                         <li><a href="{% url 'app_gateway' gateway='authorize_net' %}">Authorize</a></li>
+                                         <li><a href="{% url 'app_gateway' gateway='eway' %}">Eway</a></li>
+                                         <li><a href="{% url 'app_gateway' gateway='pay_pal' %}">Paypal</a></li>
+                                         <li><a href="{% url 'app_gateway' gateway='braintree_payments' %}">Braintree Payments (S2S)</a></li>
+                                         <li><a href="{% url 'app_gateway' gateway='stripe' %}">Stripe Payment</a></li>
+                                         <li><a href="{% url 'app_gateway' gateway='paylane' %}">Paylane</a></li>
+                                         <li><a href="{% url 'app_gateway' gateway='we_pay' %}">WePay</a></li>
+                                         <li><a href="{% url 'app_gateway' gateway='beanstream' %}">Beanstream</a></li>
+                                         <li><a href="{% url 'app_gateway' gateway='chargebee' %}">Chargebee</a></li>
                                      </ul>
                                  </li>
                                  <li class="dropdown">
-                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Offsite <b class="caret"></b></a>
+                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Integrations <b class="caret"></b></a>
                                      <ul class="dropdown-menu" id="swatch-menu">
-                                         <li><a href="{% url 'app.views.offsite_authorize_net' %}">Authorize.Net DPM</a></li>
-                                         <li><a href="{% url 'app.views.offsite_paypal' %}">Paypal</a></li>
-                                         <li><a href="{% url 'app.views.offsite_google_checkout' %}">Google Checkout</a></li>
-                                         <li><a href="{% url 'app.views.offsite_world_pay' %}">WorldPay</a></li>
-                                         <li><a href="{% url 'app.views.offsite_amazon_fps' %}">Amazon FPS</a></li>
-                                         <li><a href="{% url 'app.views.offsite_braintree' %}">Braintree Payments (TR)</a></li>
-                                         <li><a href="{% url 'app.views.offsite_stripe' %}">Stripe</a></li>
-                                         <li><a href="{% url 'app.views.offsite_eway' %}">eWAY</a></li>
-                                         <li><a href="{% url 'app.views.offsite_ogone' %}">Ogone</a></li>
-                                     </ul>
-                                 </li>
-                                 <li class="dropdown">
-                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Others <b class="caret"></b></a>
-                                     <ul class="dropdown-menu" id="swatch-menu">
-                                         <li><a href="{% url 'app.views.bitcoin' %}">Bitcoin</a></li>
+                                         <li><a href="{% url 'app_integration' integration='authorize_net_dpm' %}">Authorize.Net DPM</a></li>
+                                         <li><a href="{% url 'app_integration' integration='paypal' %}">Paypal</a></li>
+                                         <li><a href="{% url 'app_integration' integration='google_checkout' %}">Google Checkout</a></li>
+                                         <li><a href="{% url 'app_integration' integration='world_pay' %}">WorldPay</a></li>
+                                         <li><a href="{% url 'app_integration' integration='amazon_fps' %}">Amazon FPS</a></li>
+                                         <li><a href="{% url 'app_integration' integration='braintree_payments' %}">Braintree Payments (TR)</a></li>
+                                         <li><a href="{% url 'app_integration' integration='stripe' %}">Stripe</a></li>
+                                         <li><a href="{% url 'app_integration' integration='eway_au' %}">eWAY</a></li>
+                                         <li><a href="{% url 'app_integration' integration='ogone_payments' %}">Ogone</a></li>
                                      </ul>
                                  </li>
                              </ul>
@@ -77,13 +71,24 @@
             ================================================== -->
             <section id="forms">
                 <div class="page-header">
-                    <h1>Payment Form
+                    <h1>{% block heading %}Payment Form{% endblock %}
                         <div class="about-star pull-right">
                             <iframe src="http://ghbtns.com/github-btn.html?user=agiliq&amp;repo=merchant&amp;type=watch&amp;count=true&amp;size=large" allowtransparency="true" frameborder="0" height="30px" scrolling="0" width="152px"></iframe>
                         </div>
                     </h1>
                 </div>
-
+                {% if messages %}
+                <div class="row">
+                    <div class="span8 offset1">
+                        {% for message in messages %}
+                        <div class="alert alert-{{message.tags}}">
+                            <a class="close" data-dismiss="alert">×</a>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
                 <div class="row">
                     <div class="span10 offset1">
                         {% block content %}

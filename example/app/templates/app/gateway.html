@@ -1,0 +1,20 @@
+{% extends 'app/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h3>Bill amount: ${{ amount }}</h3>
+
+<form class="form-horizontal well" method="post" action=".">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Using Payment Backend: {{ gateway.display_name }}</legend>
+        {{ form|crispy }}
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn">Cancel</button>
+        </div>
+    </fieldset>
+</form>
+{% endblock %}
