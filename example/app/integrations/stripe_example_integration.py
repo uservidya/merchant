@@ -5,5 +5,5 @@ from django.core.urlresolvers import reverse
 class StripeExampleIntegration(StripeIntegration):
     def transaction(self, request):
         resp = self.gateway.purchase(100, request.POST["stripeToken"])
-        return HttpResponseRedirect("%s?status=%s" %(reverse("app_offsite_stripe"),
+        return HttpResponseRedirect("%s?status=%s" %(reverse("app_integration", args=("stripe_example",)),
                                                      resp["status"]))

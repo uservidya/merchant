@@ -80,13 +80,13 @@ GATEWAY_SETTINGS = {
 }
 
 INTEGRATION_SETTINGS = {
-    'stripe': {
+    'stripe_example': {
         'initial': {
             'amount': 1,
-            'credit_card_number': '4222222222222',
+            'credit_card_number': '4242424242424242',
             'credit_card_cvc': '100',
             'credit_card_expiration_month': '01',
-            'credit_card_expiration_year': '2020'
+            'credit_card_expiration_year': '2019'
         }
     },
     'authorize_net_dpm': {

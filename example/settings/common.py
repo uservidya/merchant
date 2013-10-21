@@ -94,11 +94,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
 
-    'app',
     'billing',
     'stripe',
     'paypal.pro',
     'crispy_forms',
+    'app',
 )
 
 STATIC_URL = "/static/"
