@@ -1,5 +1,7 @@
 ---
 language: python
+build_environment : Ubuntu1304
+
 python:
 - '2.7'
 script: python example/manage.py test billing --settings=settings.travis
